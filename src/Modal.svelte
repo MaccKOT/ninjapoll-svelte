@@ -1,6 +1,6 @@
 <script>
   export let message = 'default value'; //импорт значения из props со значением по дефолту
-  let showModal = true;
+  export let showModal = false;
   export let isPromo = false;
 </script>
 
@@ -32,7 +32,8 @@
 </style>
 
 {#if showModal}
-  <div class="backdrop" class:promo={isPromo}>
+  <!-- on:click это event emmit, который перехватит родительский компонент Modal -->
+  <div class="backdrop" class:promo={isPromo} on:click>
     <div class="modal">
       <!-- class:promo={isPromo} - условное применение класса promo -->
       <p>{message}</p>
