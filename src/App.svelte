@@ -1,15 +1,17 @@
 <script>
   let people = [
-    { name: "yoshi", beltColour: "black", age: 25, id: 1 },
-    { name: "mario", beltColour: "orange", age: 45, id: 2 },
-    { name: "luigi", beltColour: "brown", age: 35, id: 3 }
+    { name: 'yoshi', beltColour: 'black', age: 25, id: 1 },
+    { name: 'mario', beltColour: 'orange', age: 45, id: 2 },
+    { name: 'luigi', beltColour: 'brown', age: 35, id: 3 },
   ];
 
-  const handleClick = id => {
+  let login = true;
+
+  const handleClick = (id) => {
     //delete person from people array
     //оставим в массиве элементы, id которых не равен тому, что надо удалять
     //важно переназначить переменную, а не просто применить на ней метод filter! Только переназначение активирует реактивную связь
-    people = people.filter(person => person.id != id);
+    people = people.filter((person) => person.id != id);
   };
 </script>
 
@@ -29,10 +31,23 @@
 </style>
 
 <main>
+
+  <!-- условный вывод -->
+  {#if login === true}
+    <p>Login is true</p>
+  {:else if login !== true}
+    <p>Please login to site</p>
+  {/if}
+
   <!-- нужен id в скобках для манипуляции элемента в дальнейшем -->
   {#each people as person (person.id)}
     <div>
       <h4>{person.name}</h4>
+      {#if person.beltColour === 'black'}
+        <p>
+          <strong>master ninja</strong>
+        </p>
+      {/if}
       <p>{person.age} years old, {person.beltColour} belt</p>
       <!-- мы не можем использовать handleClick(person.id), потому что это сразу исполнит функцию, поэтому надо вызовать через arrow-функцию -->
       <button on:click={() => handleClick(person.id)}>delete</button>
