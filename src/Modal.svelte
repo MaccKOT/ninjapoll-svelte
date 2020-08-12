@@ -2,6 +2,13 @@
   export let message = 'default value'; //импорт значения из props со значением по дефолту
   export let showModal = false;
   export let isPromo = false;
+
+  //Event Modifiers
+  // stopPropagation - stop the event bubbling or capturing any further
+  // capture - fires the handler during the capture phase not bubbling
+  // once - makes sure the event can only fire once (removes handler)
+  // preventDefault - prevent the default action (run e.preventDefault())
+  // self - only fires the event if the clicked element is the target
 </script>
 
 <style>
@@ -33,7 +40,7 @@
 
 {#if showModal}
   <!-- on:click это event emmit, который перехватит родительский компонент Modal -->
-  <div class="backdrop" class:promo={isPromo} on:click>
+  <div class="backdrop" class:promo={isPromo} on:click|self>
     <div class="modal">
       <!-- class:promo={isPromo} - условное применение класса promo -->
       <p>{message}</p>

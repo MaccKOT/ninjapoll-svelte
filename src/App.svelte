@@ -68,7 +68,7 @@
 
 <main>
 
-  <button on:click={toggleModal}>Open Modal</button>
+  <button on:click|once={toggleModal}>Open Modal</button>
 
   <!-- нужен id в скобках для манипуляции элемента в дальнейшем -->
   <div class="cards">
