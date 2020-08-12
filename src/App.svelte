@@ -1,11 +1,13 @@
 <script>
+  import Modal from './Modal.svelte';
+
   let people = [
     { name: 'yoshi', beltColour: 'black', age: 25, id: 1 },
     { name: 'mario', beltColour: 'orange', age: 45, id: 2 },
     { name: 'luigi', beltColour: 'brown', age: 35, id: 3 },
   ];
 
-  let login = true;
+  let login = false;
 
   const handleClick = (id) => {
     //delete person from people array
@@ -34,9 +36,11 @@
 
   <!-- условный вывод -->
   {#if login === true}
-    <p>Login is true</p>
+    <button on:click={() => (login = false)}>Log Out</button>
   {:else if login !== true}
-    <p>Please login to site</p>
+    <!-- вставка компонента -->
+    <Modal />
+    <button on:click={() => (login = true)}>Log In</button>
   {/if}
 
   <!-- нужен id в скобках для манипуляции элемента в дальнейшем -->
