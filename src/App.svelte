@@ -1,23 +1,9 @@
 <script>
-  let firstName = "Jimi";
-  let lastName = "Hendrix";
-  let beltColor = "black";
-
-  const handleClick = () => {
-    beltColor = "orange";
-  };
-
-  const handleInput = e => {
-    beltColor = e.target.value;
-  };
-
-  //Создание реактивной переменной иил реактивного выражения
-  $: fullName = firstName + " " + lastName;
-  $: {
-    //срабатывает каждый раз при изменении переменной
-    console.log(beltColor);
-    console.log(fullName);
-  }
+  let people = [
+    { name: "yoshi", beltColour: "black", age: 25, id: 1 },
+    { name: "mario", beltColour: "orange", age: 45, id: 2 },
+    { name: "luigi", beltColour: "brown", age: 35, id: 3 }
+  ];
 </script>
 
 <style>
@@ -28,13 +14,6 @@
     margin: 0 auto;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
   @media (min-width: 640px) {
     main {
       max-width: none;
@@ -43,10 +22,14 @@
 </style>
 
 <main>
-
-  <p>{fullName} - {beltColor} belt</p>
-  <input type="text" bind:value={firstName} />
-  <input type="text" bind:value={lastName} />
-  <!-- прямое связывание параметров -->
-  <input type="text" bind:value={beltColor} />
+  <!-- нужен id в скобках для манипуляции элемента в дальнейшем -->
+  {#each people as person (person.id)}
+    <div>
+      <h4>{person.name}</h4>
+      <p>{person.age} years old, {person.beltColour} belt</p>
+    </div>
+    <!-- можно использовать директиву else для проверки на пустой массив -->
+  {:else}
+    <p>There are no people to show...</p>
+  {/each}
 </main>
