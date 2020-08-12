@@ -1,6 +1,7 @@
 <script>
+  export let message = 'default value'; //импорт значения из props со значением по дефолту
   let showModal = true;
-  let isPromo = true;
+  export let isPromo = false;
 </script>
 
 <style>
@@ -20,6 +21,7 @@
     text-align: center;
     background-color: white;
     color: rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.15);
   }
 
   .promo .modal {
@@ -33,7 +35,7 @@
   <div class="backdrop" class:promo={isPromo}>
     <div class="modal">
       <!-- class:promo={isPromo} - условное применение класса promo -->
-      <p>Sign up for offers!</p>
+      <p>{message}</p>
     </div>
   </div>
 {/if}

@@ -40,7 +40,7 @@
     </button>
   {:else if login !== true}
     <!-- вставка компонента -->
-    <Modal />
+    <Modal message="Hey, i am is prop value" isPromo={true} />
     <button on:click={() => (login = true)}>Log In</button>
   {/if}
 
