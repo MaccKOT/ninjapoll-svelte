@@ -20,7 +20,6 @@
 <style>
   main {
     text-align: center;
-    padding: 1em;
     max-width: 240px;
     margin: 0 auto;
   }
@@ -36,7 +35,9 @@
 
   <!-- условный вывод -->
   {#if login === true}
-    <button on:click={() => (login = false)}>Log Out</button>
+    <button style="background-color: #ccc" on:click={() => (login = false)}>
+      Log Out
+    </button>
   {:else if login !== true}
     <!-- вставка компонента -->
     <Modal />
