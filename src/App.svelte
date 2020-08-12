@@ -58,17 +58,26 @@
   </button>
 {:else if login !== true}
   <!-- вставка компонента -->
-  <Modal
-    message="Hey, i am is prop value"
-    isPromo={true}
-    {showModal}
-    on:click={toggleModal} />
+  <Modal isPromo={false} {showModal} on:click={toggleModal}>
+    <!-- использование слота для передачи сложных данных внутрь компонента -->
+    <form>
+      <input type="text" placeholder="name" />
+      <input type="text" placeholder="belt colour" />
+      <button type="submit">Add Person</button>
+    </form>
+
+    <!-- именованный слот -->
+    <div slot="title">
+      <h3>Add a New Person</h3>
+    </div>
+  </Modal>
+
   <button on:click={() => (login = true)}>Log In</button>
 {/if}
 
 <main>
 
-  <button on:click|once={toggleModal}>Open Modal</button>
+  <button on:click={toggleModal}>Open Modal</button>
 
   <!-- нужен id в скобках для манипуляции элемента в дальнейшем -->
   <div class="cards">

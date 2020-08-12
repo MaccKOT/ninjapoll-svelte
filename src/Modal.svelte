@@ -1,5 +1,5 @@
 <script>
-  export let message = 'default value'; //импорт значения из props со значением по дефолту
+  // export let message = 'default value'; //импорт значения из props со значением по дефолту
   export let showModal = false;
   export let isPromo = false;
 
@@ -27,8 +27,9 @@
     margin: 10% auto;
     text-align: center;
     background-color: white;
+    border: 2px solid rgba(57, 207, 27, 0.685);
     color: rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.25); */
   }
 
   .promo .modal {
@@ -43,7 +44,9 @@
   <div class="backdrop" class:promo={isPromo} on:click|self>
     <div class="modal">
       <!-- class:promo={isPromo} - условное применение класса promo -->
-      <p>{message}</p>
+      <!-- slot ищет переданный child и вставляет его -->
+      <slot name="title" />
+      <slot />
     </div>
   </div>
 {/if}
