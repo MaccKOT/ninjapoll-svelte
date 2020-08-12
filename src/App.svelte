@@ -22,6 +22,14 @@
   const toggleModal = () => {
     showModal = !showModal;
   };
+
+  //данные кастомного события приходят автоматически через переменную evt
+  const addPerson = (evt) => {
+    showModal = false;
+    // console.log(evt.detail);
+    const person = evt.detail;
+    people = [person, ...people]; //нельзя использовать push, для реактивной связи нужно обновить переменную
+  };
 </script>
 
 <style>
@@ -52,25 +60,16 @@
   }
 </style>
 
-<!-- условный вывод -->
-{#if login === true}
-  <button style="background-color: #ccc" on:click={() => (login = false)}>
-    Log Out
-  </button>
-{:else if login !== true}
-  <!-- вставка компонента -->
-  <Modal isPromo={false} {showModal} on:click={toggleModal}>
-    <!-- использование слота для передачи сложных данных внутрь компонента -->
-    <AddPersonForm />
+<!-- вставка компонента -->
+<Modal isPromo={false} {showModal} on:click={toggleModal}>
+  <!-- использование слота для передачи сложных данных внутрь компонента -->
+  <AddPersonForm on:addPerson={addPerson} />
 
-    <!-- именованный слот -->
-    <div slot="title">
-      <h3>Add a New Person</h3>
-    </div>
-  </Modal>
-
-  <button on:click={() => (login = true)}>Log In</button>
-{/if}
+  <!-- именованный слот -->
+  <div slot="title">
+    <h3>Add a New Person</h3>
+  </div>
+</Modal>
 
 <main>
 

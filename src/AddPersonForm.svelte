@@ -1,4 +1,9 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+  import { v4 as uuidv4 } from 'uuid'; //в простых случаях можно просто заменить Math.random
+
+  let dispatch = createEventDispatcher();
+
   let name;
   let beltColour;
   let age;
@@ -8,7 +13,18 @@
   let skills = [];
 
   const handleSubmit = () => {
-    console.log(name, beltColour, age, skills);
+    // console.log(name, beltColour, age, skills);
+
+    const person = {
+      name,
+      beltColour,
+      age,
+      skills,
+      id: uuidv4(),
+    };
+
+    //dispatch custom event function
+    dispatch('addPerson', person);
   };
 </script>
 
