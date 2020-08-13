@@ -1,3 +1,7 @@
+:root {
+  --error-color: #d91b42;
+}
+
 html,
 body {
   position: relative;
