@@ -1,5 +1,8 @@
 <script>
   import Button from '../shared/Button.svelte';
+  import { createEventDispatcher } from 'svelte';
+  let dispatch = createEventDispatcher();
+  import { v4 as uuidv4 } from 'uuid';
 
   let fields = { question: '', answerA: '', answerB: '' };
   let errors = { question: '', answerA: '', answerB: '' };
@@ -32,7 +35,15 @@
 
     //add new poll
     if (valid) {
-      console.log('valid', fields);
+      let poll = {
+        ...fields,
+        votesA: 0,
+        votesB: 0,
+        id: uuidv4(),
+      };
+      dispatch('add', poll);
+
+      // console.log('valid', fields);
     }
   };
 </script>
