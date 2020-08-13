@@ -8,7 +8,7 @@
     text-align: center;
   }
   img {
-    max-width: 180px;
+    max-width: 130px;
   }
 </style>
 

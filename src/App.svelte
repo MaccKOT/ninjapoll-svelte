@@ -1,6 +1,15 @@
 <script>
   import Header from './components/Header.svelte';
   import Footer from './components/Footer.svelte';
+  import Tabs from './shared/Tabs.svelte';
+
+  //tabs
+  let items = ['Current Polls', 'Add New Poll'];
+  let activeItem = 'Current Polls';
+
+  const tabChange = (e) => {
+    activeItem = e.detail;
+  };
 </script>
 
 <style>
@@ -12,11 +21,11 @@
 
 <Header />
 <main>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto mollitia
-    libero rerum dolore aperiam voluptate, consequatur ea eligendi debitis
-    necessitatibus tempore deserunt! Quasi esse sed numquam iure quas incidunt
-    doloremque.
-  </p>
+  <Tabs {items} {activeItem} on:tabChange={tabChange} />
+  {#if activeItem === 'Current Polls'}
+    <p>Poll list component</p>
+  {:else if activeItem === 'Add New Poll'}
+    <p>New Poll component</p>
+  {/if}
 </main>
 <Footer />
