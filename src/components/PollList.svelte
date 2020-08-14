@@ -1,8 +1,7 @@
 <script>
   import PollDetails from './PollDetails.svelte';
   import PollStore from '../store/PollStore';
-  import { fade, slide, scale } from 'svelte/transition';
-  import { flip } from 'svelte/animate';
+  import { fade, scale } from 'svelte/transition';
 </script>
 
 <style>
@@ -18,7 +17,7 @@
   {#each $PollStore as poll (poll.id)}
     <!-- мы можем использовать анимацию и переходы только на html-элементе, а не компоненте. |local - действие только на конкретном компоненте -->
     <div in:fade out:scale|local>
-      <PollDetails {poll} animate:flip={{ duration: 500 }} />
+      <PollDetails {poll} />
     </div>
   {/each}
 </div>
