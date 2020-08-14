@@ -60,6 +60,7 @@
   input {
     width: 100%;
     border-radius: 6px;
+    outline-color: var(--red-brand-color);
   }
   label {
     margin: 10px auto;
