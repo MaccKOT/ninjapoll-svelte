@@ -50,7 +50,7 @@
   }
 </style>
 
-<!-- on:click is needed for forward event, because Button is not html-element -->
+<!-- on:click needed for forward event, because Button is not html-element -->
 <button class:flat class:inverse class={type} on:click>
   <slot />
 </button>

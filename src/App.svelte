@@ -13,22 +13,7 @@
     activeItem = e.detail;
   };
 
-  // // polls mockup now in PollStore
-  // let polls = [
-  //   {
-  //     id: 1,
-  //     question: 'Python or JavaScript?',
-  //     answerA: 'Python',
-  //     answerB: 'JavaScript',
-  //     votesA: 9,
-  //     votesB: 15,
-  //   },
-  // ];
-
   const handleAdd = (e) => {
-    // const poll = e.detail;
-    // polls = [poll, ...polls]; //updated in CreatePollForm directly
-
     activeItem = 'Current Polls'; //switch tab
   };
 </script>

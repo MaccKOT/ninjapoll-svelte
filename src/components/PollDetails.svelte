@@ -8,7 +8,7 @@
   //reactive value
   $: totalVotes = poll.votesA + poll.votesB;
   $: percentA = Math.floor((100 / totalVotes) * poll.votesA) || 0; // hack, because in initial state its string
-  $: percentB = 100 - percentA || 0;
+  $: percentB = Math.floor((100 / totalVotes) * poll.votesB) || 0;
 
   //tweened percentages
   const tweenedA = tweened(0);
@@ -90,7 +90,10 @@
 <Card>
   <div class="poll">
     <h3>{poll.question}</h3>
-    <p>Total votes: {totalVotes}</p>
+    <p>
+      Total votes:
+      <strong>{totalVotes}</strong>
+    </p>
     <div class="answer" on:click={() => handleVote('a', poll.id)}>
       <!-- dynamic value -->
       <div class="percent percent-a" style="width: {$tweenedA}%" />
