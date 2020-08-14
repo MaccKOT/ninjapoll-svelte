@@ -3,6 +3,7 @@
   import { createEventDispatcher } from 'svelte';
   let dispatch = createEventDispatcher();
   import { v4 as uuidv4 } from 'uuid';
+  import PollStore from '../store/PollStore';
 
   let fields = { question: '', answerA: '', answerB: '' };
   let errors = { question: '', answerA: '', answerB: '' };
@@ -41,7 +42,11 @@
         votesB: 0,
         id: uuidv4(),
       };
-      dispatch('add', poll);
+      // save poll to store
+      PollStore.update((CurrentPoll) => {
+        return [poll, ...CurrentPoll];
+      });
+      dispatch('add');
 
       // console.log('valid', fields);
     }

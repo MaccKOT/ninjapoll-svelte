@@ -34,8 +34,7 @@
 <div class="poll-list">
   <!-- $PollStore - очень простая автоматическая подписка на хранилище. Отписка произойдёт автоматически, следить за компонентом не нужно -->
   {#each $PollStore as poll (poll.id)}
-    <!-- on:vote - forwarding event to parent -->
-    <PollDetails {poll} on:vote />
+    <PollDetails {poll} />
   {/each}
 
 </div>
