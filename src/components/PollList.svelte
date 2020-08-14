@@ -1,6 +1,13 @@
 <script>
   import PollDetails from './PollDetails.svelte';
-  export let polls = [];
+  import PollStore from '../store/PollStore';
+
+  let polls = [];
+
+  //подписка на хранилище данных. Каждый раз при изменении данных в хранилище будет срабатывать callback функции
+  PollStore.subscribe((data) => {
+    polls = data;
+  });
 </script>
 
 <style>
