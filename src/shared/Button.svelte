@@ -36,7 +36,7 @@
     border: 2px solid #d91b42;
   }
   .primary.inverse:active {
-    background: white;
+    background: white !important;
     color: #582c35 !important;
   }
   .secondary.inverse {
@@ -50,6 +50,7 @@
   }
 </style>
 
+<!-- on:click is needed for forward event, because Button is not html-element -->
 <button class:flat class:inverse class={type} on:click>
   <slot />
 </button>

@@ -2,6 +2,7 @@
   import Card from '../shared/Card.svelte';
   export let poll;
   import PollStore from '../store/PollStore';
+  import Button from '../shared/Button.svelte';
 
   //reactive value
   $: totalVotes = poll.votesA + poll.votesB;
@@ -21,6 +22,13 @@
       }
 
       return copiedPolls;
+    });
+  };
+
+  //Deleting poll
+  const handleDelete = (id) => {
+    PollStore.update((currentPolls) => {
+      return currentPolls.filter((poll) => poll.id !== id);
     });
   };
 </script>
@@ -64,6 +72,11 @@
     border-left: 4px solid #45c496;
     background-color: rgba(69, 196, 150, 0.2);
   }
+
+  .delete {
+    margin-top: 30px;
+    text-align: center;
+  }
 </style>
 
 <Card>
@@ -78,6 +91,11 @@
     <div class="answer" on:click={() => handleVote('b', poll.id)}>
       <div class="percent percent-b" style="width: {percentB}%" />
       <span>{poll.answerB} ({poll.votesB})</span>
+    </div>
+    <div class="delete">
+      <Button flat inverse on:click={() => handleDelete(poll.id)}>
+        Delete
+      </Button>
     </div>
   </div>
 </Card>
