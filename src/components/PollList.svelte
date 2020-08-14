@@ -1,26 +1,8 @@
 <script>
   import PollDetails from './PollDetails.svelte';
   import PollStore from '../store/PollStore';
-  // import { onDestroy } from 'svelte'; //хуки нужно импортировать для использования
-
-  // let polls = [];
-
-  //подписка на хранилище данных. Каждый раз при изменении данных в хранилище будет срабатывать callback функция. От события важно отписаться, когда доступ не нужен, иначе будут проблемы с производительностью
-  // const unsub = PollStore.subscribe((data) => {
-  //   polls = data;
-  // });
-
-  //lifecycle hooks
-
-  // onMount(() => {
-  //   //time to get data from a db
-  //   console.log('component mounted');
-  // });
-
-  // onDestroy(() => {
-  //   console.log('destroyed');
-  //   unsub(); //<-- отписка от события хранилища | unsub from store
-  // });
+  import { fade, slide, scale } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
 </script>
 
 <style>
@@ -34,7 +16,9 @@
 <div class="poll-list">
   <!-- $PollStore - очень простая автоматическая подписка на хранилище. Отписка произойдёт автоматически, следить за компонентом не нужно -->
   {#each $PollStore as poll (poll.id)}
-    <PollDetails {poll} />
+    <!-- мы можем использовать анимацию и переходы только на html-элементе, а не компоненте. |local - действие только на конкретном компоненте -->
+    <div in:fade out:scale|local>
+      <PollDetails {poll} animate:flip={{ duration: 500 }} />
+    </div>
   {/each}
-
 </div>
