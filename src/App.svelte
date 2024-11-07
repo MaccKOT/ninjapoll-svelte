@@ -1,35 +1,35 @@
 <script>
-  import Modal from './Modal.svelte';
-  import AddPersonForm from './AddPersonForm.svelte';
+import Modal from "./Modal.svelte";
+import AddPersonForm from "./AddPersonForm.svelte";
 
-  let showModal = true;
+let showModal = true;
 
-  let people = [
-    { name: 'yoshi', beltColour: 'black', age: 25, id: 1 },
-    { name: 'mario', beltColour: 'orange', age: 45, id: 2 },
-    { name: 'luigi', beltColour: 'brown', age: 35, id: 3 },
-  ];
+let people = [
+	{ name: "yoshi", beltColour: "black", age: 25, id: 1 },
+	{ name: "mario", beltColour: "orange", age: 45, id: 2 },
+	{ name: "luigi", beltColour: "brown", age: 35, id: 3 },
+];
 
-  let login = false;
+let login = false;
 
-  const handleClick = (id) => {
-    //delete person from people array
-    //оставим в массиве элементы, id которых не равен тому, что надо удалять
-    //важно переназначить переменную, а не просто применить на ней метод filter! Только переназначение активирует реактивную связь
-    people = people.filter((person) => person.id != id);
-  };
+const handleClick = (id) => {
+	//delete person from people array
+	//оставим в массиве элементы, id которых не равен тому, что надо удалять
+	//важно переназначить переменную, а не просто применить на ней метод filter! Только переназначение активирует реактивную связь
+	people = people.filter((person) => person.id != id);
+};
 
-  const toggleModal = () => {
-    showModal = !showModal;
-  };
+const toggleModal = () => {
+	showModal = !showModal;
+};
 
-  //данные кастомного события приходят автоматически через переменную evt
-  const addPerson = (evt) => {
-    showModal = false;
-    // console.log(evt.detail);
-    const person = evt.detail;
-    people = [person, ...people]; //нельзя использовать push, для реактивной связи нужно обновить переменную
-  };
+//данные кастомного события приходят автоматически через переменную evt
+const addPerson = (evt) => {
+	showModal = false;
+	// console.log(evt.detail);
+	const person = evt.detail;
+	people = [person, ...people]; //нельзя использовать push, для реактивной связи нужно обновить переменную
+};
 </script>
 
 <style>
